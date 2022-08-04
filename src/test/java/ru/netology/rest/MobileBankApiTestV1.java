@@ -19,5 +19,20 @@ class MobileBankApiTestV1 {
         ;
 
     }
+    @Test
+    void shouldCheckConnectionHeader() {
+        // Given - When - Then
+        // Предусловия
+        given()
+                .baseUri("http://localhost:9999/api/v1")
+                // Выполняемые действия
+                .when()
+                .get("/demo/accounts")
+                // Проверки
+                .then()
+                .header("connection","keep-alive")
+        ;
+    }
 }
+
 

@@ -6,6 +6,8 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Test;
 
+import static org.hamcrest.core.IsEqual.equalTo;
+
 import static io.restassured.RestAssured.given;
 
 class MobileBankApiTestV6 {
@@ -30,5 +32,22 @@ class MobileBankApiTestV6 {
                 // Проверки
                 .then()
                 .statusCode(200);
+    }
+
+    @Test
+    void shouldCheck() {
+        // Given - When - Then
+        // Предусловия
+        given()
+                .spec(requestSpec) // со спецификацией проще (особенно когда много тестов)
+                // Выполняемые действия
+                .when()
+                .get("/demo/accounts")
+                // Проверки
+                .then()
+                .statusCode(200)
+                .body("name[0]", equalTo("Текущий счёт"),
+                        "name[1]", equalTo("Текущий счёт"),
+                        "name[2]", equalTo("Текущий зарплатный счёт"));
     }
 }

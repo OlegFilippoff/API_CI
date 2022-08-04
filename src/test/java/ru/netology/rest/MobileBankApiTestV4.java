@@ -18,8 +18,20 @@ class MobileBankApiTestV4 {
                 // Проверки
                 .then()
                 .statusCode(200)
-                .body(matchesJsonSchemaInClasspath("accounts.schema.json"))
-                .header("connection","keep-alive")
-        ;
+                .body(matchesJsonSchemaInClasspath("accounts.schema.json"));
+    }
+
+    @Test
+    void shouldReturnStatusLine() {
+        // Given - When - Then
+        // Предусловия
+        given()
+                .baseUri("http://localhost:9999/api/v1")
+                // Выполняемые действия
+                .when()
+                .get("/demo/accounts")
+                // Проверки
+                .then()
+                .statusLine("HTTP/1.1 200 OK");
     }
 }

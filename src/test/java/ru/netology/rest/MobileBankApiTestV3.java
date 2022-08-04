@@ -26,4 +26,19 @@ class MobileBankApiTestV3 {
                 .body("[0].balance", greaterThanOrEqualTo(0))
         ;
     }
+
+    @Test
+    void should2Accounts() {
+        // Given - When - Then
+        // Предусловия
+        given()
+                .baseUri("http://localhost:9999/api/v1")
+                // Выполняемые действия
+                .when()
+                .get("/demo/accounts")
+                // Проверки
+                .then()
+                .body("[0].name", equalTo("Текущий счёт"))
+        ;
+    }
 }
