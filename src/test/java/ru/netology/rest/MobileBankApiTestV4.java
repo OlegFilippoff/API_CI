@@ -1,11 +1,14 @@
 package ru.netology.rest;
 
+import jdk.nashorn.api.scripting.NashornScriptEngineFactory;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 
 class MobileBankApiTestV4 {
+    @SuppressWarnings("removal")
+    NashornScriptEngineFactory factory = new NashornScriptEngineFactory();
     @Test
     void shouldReturnDemoAccounts() {
         // Given - When - Then
